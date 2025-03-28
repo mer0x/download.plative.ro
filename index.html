@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plative App Redirect</title>
+    <script>
+        // Link-urile specifice pentru aplicații
+        const APP_STORE_URL = "https://apps.apple.com/ro/app/plative/id1628529979";
+        const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.Plative&hl=en&pli=1";
+        const WEBSITE_URL = "https://plative.ro";
+        
+        // Funcție pentru a detecta sistemul de operare
+        function detectOS() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            // iOS detection
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return 'iOS';
+            }
+            
+            // Android detection
+            if (/android/i.test(userAgent)) {
+                return 'Android';
+            }
+            
+            // Default: desktop sau alt sistem
+            return 'unknown';
+        }
+        
+        // Execută redirecționarea imediat
+        window.onload = function() {
+            const os = detectOS();
+            
+            if (os === 'iOS') {
+                window.location.href = APP_STORE_URL;
+            } else if (os === 'Android') {
+                window.location.href = GOOGLE_PLAY_URL;
+            } else {
+                // Redirecționare către site-ul web pentru dispozitive nesusținute
+                window.location.href = WEBSITE_URL;
+            }
+        };
+    </script>
+</head>
+<body>
+    <!-- Pagină goală intenționat -->
+</body>
+</html>
